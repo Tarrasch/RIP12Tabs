@@ -196,6 +196,7 @@ bool PathPlanner::checkPathSegment( int _robotId,
   for( int i = 0; i < n; i++ ) {
     Eigen::VectorXd conf = (double)(n - i)/(double)n * _config1 + (double)(i)/(double)n * _config2;
     world->getRobot(_robotId)->setDofs( conf, _links );
+    world->getRobot(_robotId)->update();
     if( world->checkCollision() ) {
       return false;
     }
